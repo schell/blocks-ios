@@ -50,7 +50,7 @@ cabal-version:       >=1.10
 
 
 executable Blocks
-  ghc-options:         -staticlib -threaded
+  ghc-options:         -staticlib
   include-dirs:        src/include
   -- .hs or .lhs file containing the Main module.
   main-is:             Main.hs

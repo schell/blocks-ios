@@ -115,6 +115,8 @@ GLfloat gCubeVertexData[216] =
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                             action:@selector(didTap:)]];
+//    [self.view addGestureRecognizer:[[UISwipeGestureRecognizer alloc] initWithTarget:self
+//                                                                              action:@selector(didSwipe:)]];
     
     [self setupGL];
 }
@@ -153,16 +155,20 @@ GLfloat gCubeVertexData[216] =
 //}
 
 - (void)didTap:(UITapGestureRecognizer*)tap {
-    CGPoint loc = [tap locationInView:self.view];
-    IOSTouch t;
-    t.locX = loc.x;
-    t.locY = loc.y;
+    //CGPoint loc = [tap locationInView:self.view];
+    iostouch t;
+    t.loc = CGPointMake(1, 2);
+    t.prevLoc = CGPointMake(3, 4);
     t.phase = UITouchPhaseEnded;
     t.tapCount = tap.numberOfTapsRequired;
-    t.timestamp = 69;
+    t.timestamp = 5;
     
-    extern void (*inputHS) (int,int,double,double);
-    inputHS(tap.numberOfTouchesRequired, tap.numberOfTapsRequired, loc.x, loc.y);
+    extern void (*inputHS) (iostouch*);
+    inputHS(&t);
+}
+
+- (void)didSwipe:(UISwipeGestureRecognizer*)swipe {
+    NSLog(@"%s %@",__func__,swipe);
 }
 
 #pragma mark - GL

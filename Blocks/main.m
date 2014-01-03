@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "TouchHS.h"
 
 void (*setupGLHS)(void);
-void (*inputHS)(int,int,double,double);
+void (*inputHS)(iostouch*);
 void (*updateGLHS)(double);
 void (*tearDownGLHS)(void);
 
 int c_main(void (*_setupGLHS)(void),
-           void (*_inputHS)(int,int,double,double),
+           void (*_inputHS)(iostouch*),
            void (*_updateGLHS)(double),
            void (*_tearDownGLHS)(void)) {
     int argc = 1;

@@ -26,8 +26,7 @@
 		EA88B6C6185E8046002E8EF0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA88B669185E5E11002E8EF0 /* UIKit.framework */; };
 		EA88B6CE185E8046002E8EF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA88B6CC185E8046002E8EF0 /* InfoPlist.strings */; };
 		EA88B6D0185E8046002E8EF0 /* BlocksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88B6CF185E8046002E8EF0 /* BlocksTests.m */; };
-		EAC7BCC31864F80C005BBC62 /* Blocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC7BCC21864F80C005BBC62 /* Blocks.a */; };
-		EAC7BCC51864F850005BBC62 /* Blocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC7BCC41864F850005BBC62 /* Blocks.a */; };
+		EAD763611875F62000E2EFCE /* Main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD763601875F62000E2EFCE /* Main.a */; };
 		EAE6A0CD185E85C5009E6568 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EA88B694185E61A2002E8EF0 /* libiconv.dylib */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		EA4BEBD01864C66200F9F9C5 /* TouchHS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchHS.h; path = src/include/TouchHS.h; sourceTree = "<group>"; };
+		EA75690C18654A5100BA4FFD /* Main_stub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Main_stub.h; path = src/Main_stub.h; sourceTree = "<group>"; };
 		EA88B665185E5E11002E8EF0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA88B667185E5E11002E8EF0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EA88B669185E5E11002E8EF0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -68,8 +68,7 @@
 		EA88B6CB185E8046002E8EF0 /* BlocksTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlocksTests-Info.plist"; sourceTree = "<group>"; };
 		EA88B6CD185E8046002E8EF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA88B6CF185E8046002E8EF0 /* BlocksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocksTests.m; sourceTree = "<group>"; };
-		EAC7BCC21864F80C005BBC62 /* Blocks.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Blocks.a; path = "Blocks/dist-arm/build/Blocks/Blocks.a"; sourceTree = "<group>"; };
-		EAC7BCC41864F850005BBC62 /* Blocks.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Blocks.a; path = "Blocks/dist-i386/build/Blocks/Blocks.a"; sourceTree = "<group>"; };
+		EAD763601875F62000E2EFCE /* Main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = Main.a; path = Blocks/src/Main.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,13 +77,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAE6A0CD185E85C5009E6568 /* libiconv.dylib in Frameworks */,
-				EAC7BCC31864F80C005BBC62 /* Blocks.a in Frameworks */,
 				EA88B6A3185E8046002E8EF0 /* OpenGLES.framework in Frameworks */,
 				EA88B69E185E8046002E8EF0 /* CoreGraphics.framework in Frameworks */,
 				EA88B69F185E8046002E8EF0 /* UIKit.framework in Frameworks */,
-				EAC7BCC51864F850005BBC62 /* Blocks.a in Frameworks */,
 				EA88B6A1185E8046002E8EF0 /* GLKit.framework in Frameworks */,
 				EA88B69D185E8046002E8EF0 /* Foundation.framework in Frameworks */,
+				EAD763611875F62000E2EFCE /* Main.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,8 +102,7 @@
 		EA88B659185E5E11002E8EF0 = {
 			isa = PBXGroup;
 			children = (
-				EAC7BCC21864F80C005BBC62 /* Blocks.a */,
-				EAC7BCC41864F850005BBC62 /* Blocks.a */,
+				EAD763601875F62000E2EFCE /* Main.a */,
 				EA88B6A4185E8046002E8EF0 /* Blocks */,
 				EA88B6C9185E8046002E8EF0 /* BlocksTests */,
 				EA88B664185E5E11002E8EF0 /* Frameworks */,
@@ -139,6 +136,7 @@
 		EA88B6A4185E8046002E8EF0 /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
+				EA75690C18654A5100BA4FFD /* Main_stub.h */,
 				EA88B6AD185E8046002E8EF0 /* AppDelegate.h */,
 				EA4BEBD01864C66200F9F9C5 /* TouchHS.h */,
 				EA88B6AE185E8046002E8EF0 /* AppDelegate.m */,
@@ -190,7 +188,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA88B6D1185E8046002E8EF0 /* Build configuration list for PBXNativeTarget "Blocks" */;
 			buildPhases = (
-				EAC7BCC11864EA6F005BBC62 /* ShellScript */,
+				EAC7BCC11864EA6F005BBC62 /* Build Haskell */,
 				EA88B698185E8046002E8EF0 /* Sources */,
 				EA88B699185E8046002E8EF0 /* Frameworks */,
 				EA88B69A185E8046002E8EF0 /* Resources */,
@@ -280,18 +278,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		EAC7BCC11864EA6F005BBC62 /* ShellScript */ = {
+		EAC7BCC11864EA6F005BBC62 /* Build Haskell */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Build Haskell";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Hello\"\n";
+			shellScript = "#cd $PROJECT_DIR/Blocks/src\n#make\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -437,7 +436,7 @@
 		EA88B6D2185E8046002E8EF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEAD_CODE_STRIPPING = NO;
@@ -450,12 +449,11 @@
 				INFOPLIST_FILE = "Blocks/Blocks-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/schell/Code/blocks-ios/Blocks/dist-arm/build/Blocks",
-					"/Users/schell/Code/blocks-ios/Blocks/dist-i386/build/Blocks",
+					"/Users/schell/Code/blocks-ios/Blocks/src",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "arm64 armv7 armv7s";
+				VALID_ARCHS = armv7s;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -463,7 +461,7 @@
 		EA88B6D3185E8046002E8EF0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEAD_CODE_STRIPPING = NO;
@@ -472,12 +470,11 @@
 				INFOPLIST_FILE = "Blocks/Blocks-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/schell/Code/blocks-ios/Blocks/dist-arm/build/Blocks",
-					"/Users/schell/Code/blocks-ios/Blocks/dist-i386/build/Blocks",
+					"/Users/schell/Code/blocks-ios/Blocks/src",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "arm64 armv7 armv7s";
+				VALID_ARCHS = armv7s;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

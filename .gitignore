@@ -25,9 +25,12 @@ dist
 dist-i386
 dist-arm
 cabal-dev
+*.a
 *.o
 *.hi
 *.chi
 *.chs.h
 .virthualenv
 
+# Vim
+*.swp

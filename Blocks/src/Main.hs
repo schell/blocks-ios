@@ -3,6 +3,7 @@
 import Foreign.Ptr
 import Foreign.C.Types
 import IOS.Touch
+import Foreign.Storable
 
 type GetUpdateFunc = (CDouble -> IO ())
 type GetTapFunc = (IOSTouchPtr -> IO ())
@@ -17,11 +18,6 @@ foreign import ccall "wrapper" wrapIO :: IO () -> IO (FunPtr (IO ()))
 foreign import ccall "wrapper" wrapDoubleIO :: GetUpdateFunc -> IO (FunPtr GetUpdateFunc)
 foreign import ccall "wrapper" wrapTapIO :: GetTapFunc -> IO (FunPtr GetTapFunc)
 
-
-data Tap = Tap { _tapTouchesReq :: Int
-               , _tapTapsReq    :: Int
-               , _tapLoc        :: (Double, Double)
-               } deriving (Show, Eq)
 
 main :: IO ()
 main = do
@@ -38,10 +34,7 @@ setupApp = putStrLn "Startup GL."
 
 
 inputApp :: GetTapFunc
-inputApp = print
-
-
-
+inputApp ptr = peek ptr >>= print
 
 
 updateApp :: Double -> IO ()
