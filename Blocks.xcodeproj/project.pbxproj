@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA41C7E118777D9C00314D98 /* ToHaskell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41C7E018777D9C00314D98 /* ToHaskell.m */; };
 		EA88B69D185E8046002E8EF0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA88B665185E5E11002E8EF0 /* Foundation.framework */; };
 		EA88B69E185E8046002E8EF0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA88B667185E5E11002E8EF0 /* CoreGraphics.framework */; };
 		EA88B69F185E8046002E8EF0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA88B669185E5E11002E8EF0 /* UIKit.framework */; };
@@ -41,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA41C7DF18777D9C00314D98 /* ToHaskell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToHaskell.h; path = ToHaskell/ToHaskell.h; sourceTree = "<group>"; };
+		EA41C7E018777D9C00314D98 /* ToHaskell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToHaskell.m; path = ToHaskell/ToHaskell.m; sourceTree = "<group>"; };
+		EA41C7E218779EC700314D98 /* ForHaskell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForHaskell.h; sourceTree = "<group>"; };
 		EA4BEBD01864C66200F9F9C5 /* TouchHS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchHS.h; path = src/include/TouchHS.h; sourceTree = "<group>"; };
 		EA75690C18654A5100BA4FFD /* Main_stub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Main_stub.h; path = src/Main_stub.h; sourceTree = "<group>"; };
 		EA88B665185E5E11002E8EF0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -99,6 +103,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA41C7DE1877792A00314D98 /* ToHaskell */ = {
+			isa = PBXGroup;
+			children = (
+				EA41C7DF18777D9C00314D98 /* ToHaskell.h */,
+				EA41C7E018777D9C00314D98 /* ToHaskell.m */,
+			);
+			name = ToHaskell;
+			sourceTree = "<group>";
+		};
 		EA88B659185E5E11002E8EF0 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +149,7 @@
 		EA88B6A4185E8046002E8EF0 /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
+				EA41C7DE1877792A00314D98 /* ToHaskell */,
 				EA75690C18654A5100BA4FFD /* Main_stub.h */,
 				EA88B6AD185E8046002E8EF0 /* AppDelegate.h */,
 				EA4BEBD01864C66200F9F9C5 /* TouchHS.h */,
@@ -144,6 +158,7 @@
 				EA88B6B3185E8046002E8EF0 /* Main_iPad.storyboard */,
 				EA88B6B6185E8046002E8EF0 /* Shader.fsh */,
 				EA88B6B8185E8046002E8EF0 /* Shader.vsh */,
+				EA41C7E218779EC700314D98 /* ForHaskell.h */,
 				EA88B6BA185E8046002E8EF0 /* ViewController.h */,
 				EA88B6BB185E8046002E8EF0 /* ViewController.m */,
 				EA88B6BD185E8046002E8EF0 /* Images.xcassets */,
@@ -300,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA88B6BC185E8046002E8EF0 /* ViewController.m in Sources */,
+				EA41C7E118777D9C00314D98 /* ToHaskell.m in Sources */,
 				EA88B6AF185E8046002E8EF0 /* AppDelegate.m in Sources */,
 				EA88B6AB185E8046002E8EF0 /* main.m in Sources */,
 			);

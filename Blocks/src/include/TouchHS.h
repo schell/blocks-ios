@@ -9,14 +9,19 @@
 #ifndef Blocks_TouchHS_h
 #define Blocks_TouchHS_h
 
-#include <CoreGraphics/CoreGraphics.h>
+typedef struct {
+    float x;
+    float y;
+} hpoint;
 
 typedef struct {
     double timestamp;
     int phase;
     int tapCount;
-    CGPoint loc;
-    CGPoint prevLoc;
-} iostouch;
+    hpoint loc;
+    hpoint prevLoc;
+} htouch;
+
+
 
 #endif

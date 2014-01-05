@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "TouchHS.h"
+#import "ToHaskell.h"
+#import "ForHaskell.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -99,9 +101,15 @@ GLfloat gCubeVertexData[216] =
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+static ViewController* __staticVC = nil;
++ (ViewController*)sharedViewController {
+    return __staticVC;
+}
+
+- (void)viewDidLoad {
     [super viewDidLoad];
+    
+    __staticVC = self;
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 
@@ -112,17 +120,19 @@ GLfloat gCubeVertexData[216] =
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+    view.multipleTouchEnabled = YES;
     
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                            action:@selector(didTap:)]];
+    
+    
+//    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                            action:@selector(didTap:)]];
 //    [self.view addGestureRecognizer:[[UISwipeGestureRecognizer alloc] initWithTarget:self
 //                                                                              action:@selector(didSwipe:)]];
-    
+//    
     [self setupGL];
 }
 
-- (void)dealloc
-{    
+- (void)dealloc {
     [self tearDownGL];
     
     if ([EAGLContext currentContext] == self.context) {
@@ -130,8 +140,7 @@ GLfloat gCubeVertexData[216] =
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
     if ([self isViewLoaded] && ([[self view] window] == nil)) {
@@ -148,23 +157,74 @@ GLfloat gCubeVertexData[216] =
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - For Haskell
+
+void addTapRecognizer(int recogId, int touchesReqd, int tapsReqd) {
+    NSLog(@"%s adding recog %i %i",__func__,touchesReqd, tapsReqd);
+    ViewController* controller = [ViewController sharedViewController];
+    UITapGestureRecognizer* recog = [[UITapGestureRecognizer alloc] initWithTarget:controller action:@selector(didTap:)];
+    recog.numberOfTapsRequired = tapsReqd;
+    recog.numberOfTouchesRequired = touchesReqd;
+    [controller.view addGestureRecognizer:recog];
+}
+
 #pragma mark - User Input
 
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"%@ %@",touches,event);
-//}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    
+    htouch l[[touches count]];
+    int i = 0;
+    for (UITouch* touch in [touches objectEnumerator]) {
+        htouch t = [touch toHTouchInView:self.view];
+        l[i++] = t;
+    }
+    
+    extern void (*tbegan) (int, htouch*);
+    tbegan(i, &l[0]);
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    
+    htouch l[[touches count]];
+    int i = 0;
+    for (UITouch* touch in [touches objectEnumerator]) {
+        htouch t = [touch toHTouchInView:self.view];
+        l[i++] = t;
+    }
+    
+    extern void (*tmoved) (int, htouch*);
+    tmoved(i, &l[0]);
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    
+    htouch l[[touches count]];
+    int i = 0;
+    for (UITouch* touch in [touches objectEnumerator]) {
+        htouch t = [touch toHTouchInView:self.view];
+        l[i++] = t;
+    }
+    
+    extern void (*tended) (int, htouch*);
+    tended(i, &l[0]);
+}
 
 - (void)didTap:(UITapGestureRecognizer*)tap {
-    //CGPoint loc = [tap locationInView:self.view];
-    iostouch t;
-    t.loc = CGPointMake(1, 2);
-    t.prevLoc = CGPointMake(3, 4);
+    CGPoint cgp = [tap locationInView:self.view];
+    htouch t;
+    hpoint loc = {cgp.x, cgp.y};
+    hpoint ploc = loc;
+    t.loc = loc;
+    t.prevLoc = ploc;
     t.phase = UITouchPhaseEnded;
     t.tapCount = tap.numberOfTapsRequired;
-    t.timestamp = 5;
+    t.timestamp = time(NULL);
     
-    extern void (*inputHS) (iostouch*);
-    inputHS(&t);
+    extern void (*tapped) (htouch*);
+    tapped(&t);
 }
 
 - (void)didSwipe:(UISwipeGestureRecognizer*)swipe {

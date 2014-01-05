@@ -11,12 +11,18 @@
 #import "TouchHS.h"
 
 void (*setupGLHS)(void);
-void (*inputHS)(iostouch*);
+void (*tapped)(htouch*);
+void (*tbegan)(int, htouch*);
+void (*tmoved)(int, htouch*);
+void (*tended)(int, htouch*);
 void (*updateGLHS)(double);
 void (*tearDownGLHS)(void);
 
 int c_main(void (*_setupGLHS)(void),
-           void (*_inputHS)(iostouch*),
+           void (*_tapped)(htouch*),
+           void (*_tbegan)(int, htouch*),
+           void (*_tmoved)(int, htouch*),
+           void (*_tended)(int, htouch*),
            void (*_updateGLHS)(double),
            void (*_tearDownGLHS)(void)) {
     int argc = 1;
@@ -24,7 +30,10 @@ int c_main(void (*_setupGLHS)(void),
     argv[0] = "dummy";
     argv[1] = NULL;
     setupGLHS = _setupGLHS;
-    inputHS = _inputHS;
+    tapped = _tapped;
+    tbegan = _tbegan;
+    tmoved = _tmoved;
+    tended = _tended;
     updateGLHS = _updateGLHS;
     tearDownGLHS = _tearDownGLHS;
     @autoreleasepool {

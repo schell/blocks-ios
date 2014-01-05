@@ -8,4 +8,5 @@ hscs:
 	hsc2hs -I include IOS/Touch.hsc
 
 clean:
-	rm *.o *.a *.hi *_stub.h .DS_Store
+	rm IOS/Touch.hs
+	rm *.o *.a *.hi

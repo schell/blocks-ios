@@ -8,48 +8,46 @@ import Control.Applicative
 
 #include "TouchHS.h"
 
-data CGPoint = CGPoint { _x :: Float
-                       , _y :: Float
-                       } deriving (Show, Eq, Ord, Enum)
+type Point = (Float, Float)
 
 
-instance Storable CGPoint where
-    sizeOf _ = (#size CGPoint)
-    alignment _ = (#size CGFloat) 
+instance Storable Point where
+    sizeOf _ = (#size hpoint)
+    alignment _ = alignment (undefined :: CFloat)
     peek ptr = do
-        x <- (#peek CGPoint, x) ptr
-        y <- (#peek CGPoint, y) ptr
-        return CGPoint x y
-    poke ptr (CGPoint x y) = do
-        (#poke CGPoint, x) ptr x
-        (#poke CGPoint, y) ptr y
+        x <- (#peek hpoint, x) ptr
+        y <- (#peek hpoint, y) ptr
+        return (x, y)
+    poke ptr (x, y) = do
+        (#poke hpoint, x) ptr x
+        (#poke hpoint, y) ptr y
 
 
-data IOSTouch = IOSTouch { _iosTouchTimestamp    :: Double
-                         , _iosTouchPhase        :: Int
-                         , _iosTouchTapCount     :: Int
-                         , _iosTouchLocation     :: CGPoint
-                         , _iosTouchPrevLocation :: CGPoint
-                         } deriving (Show, Eq)
+data HTouch = HTouch { _hTouchTimestamp    :: Double
+                     , _hTouchPhase        :: Int
+                     , _hTouchTapCount     :: Int
+                     , _hTouchLocation     :: Point
+                     , _hTouchPrevLocation :: Point
+                     } deriving (Show, Eq)
 
 
-type IOSTouchPtr = Ptr IOSTouch
+type HTouchPtr = Ptr HTouch
 
 
-instance Storable IOSTouch where
-    sizeOf _ = (#size iostouch)
-    alignment _ = (#size CGPoint) 
+instance Storable HTouch where
+    sizeOf _ = (#size htouch)
+    alignment _ = alignment (undefined :: CDouble)
     peek ptr = do
-        t  <- (#peek iostouch, timestamp) ptr
-        p  <- (#peek iostouch, phase) ptr
-        tc <- (#peek iostouch, tapCount) ptr
-        l  <- (#peek iostouch, loc) ptr 
-        pl <- (#peek iostouch, prevLoc) ptr
-        return $ IOSTouch t p tc l pl
-    poke ptr (IOSTouch t p tc l pl) = do
-        (#poke iostouch, timestamp) ptr t
-        (#poke iostouch, phase) ptr p
-        (#poke iostouch, tapCount) ptr tc
-        (#peek iostouch, loc) ptr l
-        (#peek iostouch, prevLoc) ptr pl
+        t  <- (#peek htouch, timestamp) ptr
+        p  <- (#peek htouch, phase) ptr
+        tc <- (#peek htouch, tapCount) ptr
+        l  <- (#peek htouch, loc) ptr :: IO Point
+        pl <- (#peek htouch, prevLoc) ptr :: IO Point
+        return $ HTouch t p tc l pl
+    poke ptr (HTouch t p tc l pl) = do
+        (#poke htouch, timestamp) ptr t
+        (#poke htouch, phase) ptr p
+        (#poke htouch, tapCount) ptr tc
+        (#poke htouch, loc) ptr l
+        (#poke htouch, prevLoc) ptr pl
 
